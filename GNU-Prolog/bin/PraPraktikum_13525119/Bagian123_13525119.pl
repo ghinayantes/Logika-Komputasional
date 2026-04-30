@@ -111,37 +111,113 @@ anak(anya, ariana).
 
 /* a. saudara(X, Y) */
 saudara(X, Y):-
-    anak(X, Z),
-    anak(Y, Z),
+    anak(X, _Z),
+    anak(Y, _Z),
     X \== Y.
 
 /* b. saudaratiri(X, Y) */
 saudaratiri(X, Y):-
-    anak(X, U),
-    anak(X, V),
-    anak(Y, V),
-    anak(Y, W),
-    menikah(U, V),
-    menikah(V, W),
+    anak(X, _U),
+    anak(X, _V),
+    anak(Y, _V),
+    anak(Y, _W),
+    menikah(_U, _V),
+    menikah(_V, _W),
     X \== Y, U \== W.
 
 /* c. sepupu(X, Y) */
 sepupu(X, Y):-
-    saudara(V, W),
-    anak(X, V),
-    anak(Y, W),
+    saudara(_V, _W),
+    anak(X, _V),
+    anak(Y, _W),
     X \== Y.
 
 /* d. kakak(X, Y) */
 kakak(X, Y):-
     saudara(X,Y),
-    usia(X, V),
-    usia(Y, W),
+    usia(X, _V),
+    usia(Y, _W),
     V > W, X \== Y.
 
 /* e. keponakan(X, Y) */
 keponakan(X, Y):- 
-    saudara(Z, Y),
-    anak(X, Z),
+    saudara(_Z, Y),
+    anak(X, _Z),
     X \== Y.
+
+/* f. mertua(X, Y) */
+mertua(X, Y):-
+    menikah(Y, _W),
+    anak(_W, X),
+    X \== Y.
+
+/* g. nenek(X, Y) */
+nenek(X, Y):-
+    anak(_Z, X),
+    anak(Y, _Z),
+    wanita(X),
+    X \== Y, X \== Z, Y \== Z.
+
+/* h. keturunan(X, Y) */
+keturunan(X, Y):-
+    anak(X, Y), X \== Y.
+keturunan(X, Y):-
+    anak(_Z, Y),
+    anak(X, _Z),
+    X \== Y, Y \== _Z, X \== _Z.
+keturunan(X, Y):-
+    anak(_W, Y),
+    anak(_V, _W),
+    anak(X, _V),
+    X \== Y, _V \== _W, _V \== Y, 
+    X \== _V, X \== _W, Y \== _W.
+
+/* i. lajang(X) */
+lajang(X):-
+    pria(X),
+    \+ menikah(X, _Y).
+lajang(X):-
+    wanita(X),
+    \+ menikah(X, _Y).
+
+/* j. anakbungsu(X) */
+anakbungsu(X):- 
+    saudara(X, _Y),
+    usia(X, _V),
+    usia(_Y, _W),
+    _V < _W, X \== _Y.
+anakbungsu(X):-
+    pria(X),
+    \+ saudara(X, _),
+    anak(X, _).
+anakbungsu(X):-
+    wanita(X),
+    \+ saudara(X, _),
+    anak(X, _).
+
+/* k. anaksulung(X) */
+anaksulung(X):-
+    saudara(X, _Y),
+    usia(X, _V),
+    usia(_Y, _W),
+    _V > _W, X \== _Y.
+anaksulung(X):-
+    (pria(X); wanita(X)),
+    \+ saudara(X, _),
+    anak(X, _).
+
+/* l. anaktunggal(X) */
+anaktunggal(X):-
+    (pria(X); wanita(X)),
+    anak(X, _Y),
+    \+ saudara(X, _).
+
+
+/* m. yatimpiatu(X) */
+yatimpiatu(X):- 
+    (pria(X); wanita(X)),
+    \+ anak(X, _Y),
+    X \== _Y.
+
+
 

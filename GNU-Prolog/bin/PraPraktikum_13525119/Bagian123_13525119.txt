@@ -1,0 +1,68 @@
+Bagian <I>
+
+Query: ?- menikah(adinda, Suami_adinda). (a. Suami dari Adinda)
+
+Suami_adinda = todoroki ? ;
+
+Suami_adinda = levi
+
+yes
+
+Query: ?- anak(_Anak, loid), anak(_Cucu, _Anak), anak(Cicit, _Cucu). (b. Cicit dari Loid)
+
+Cicit = umaru ? ;
+
+Cicit = chopper ? ;
+
+(16 ms) no
+
+Query: ?- anak(chopper,_OrangTuaChopper),anak(_OrangTuaChopper, _GrandyChopper),saudara(_GrandyChopper,Paman_Chopper),pria(Paman_Chopper). (c. Paman dari orang tua Chopper)
+
+Paman_Chopper = karma ? ;
+
+Paman_Chopper = karma ? ;
+
+(16 ms) no
+
+Query: ?- mertua(_Mertua_dari_X, X),usia(_Mertua_dari_X, _Usia_Mertua),_Usia_Mertua > 110. (d. Orang yang memiliki mertua berusia di atas 110 tahun)
+
+X = todoroki ? ;
+
+X = todoroki ? ;
+
+X = levi ? ;
+
+X = levi ? ;
+
+(31 ms) no
+
+Query: ?- sepupu(X,_Sepupu_X),pria(X),wanita(_Sepupu_X). (e. Laki-laki yang memiliki sepupu perempuan)
+
+X = chopper ? ;
+
+X = fathur ? ;
+
+X = fathur ? ;
+
+no
+
+Query: ?- keturunan(X, faqih),saudara(X,_Saudara_X). (f. Seluruh keturunan dari Faqih yang memiliki tepat satu saudara)
+
+X = owen ? ;
+
+X = owen ? ;
+
+X = ariana ? ;
+
+X = ariana ? ;
+
+X = nezuko ? ;
+
+X = nezuko ? ;
+
+X = fathur ? ;
+
+X = fathur ? ;
+
+(62 ms) no
+

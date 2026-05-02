@@ -310,9 +310,46 @@ solve(N, Exp, X):-
     solve(_SisaN, _NextExp, _Result1),
     X is _Val + _Result1.
 
+/* Recursive 3 */
+safeBinary(N, X):-
+    N >= 1,
+    isValid(N, 0, X).
 
+/* Deklarasi Fakta */
+/* Base Case Helper */
+isValid(0, _Bin, 1):-!.
+/* Recursive Helper */
+isValid(N, 0, X):-
+    N >= 1,
+    _NextN is N - 1,
+    isValid(_NextN, 0, _X0),
+    isValid(_NextN, 1, _X1),
+    X is _X0 + _X1.
 
+/* Recursive Helper */
+isValid(N, 1, X):-
+    N >= 1,
+    _NextN is N - 1,
+    isValid(_NextN, 0, X).
 
+/* Deklarasi Fakta */
+/* Base Case */
+altFactorial(1, 1):-!.
+/* Recursive 4 */
+altFactorial(N, X):-
+    N > 1,
+    _N1 is N - 1,
+    altFactorial(_N1, _SubR),
+    factorialHelper(N, _FactR),
+    (0 is N mod 2 -> X is _SubR - _FactR ; X is _SubR + _FactR).
 
+/* Deklarasi Fakta */
+/* Base Case Helper */
+factorialHelper(0, 1):-!.
+/* Recursive Helper */
+factorialHelper(N, X):-
+    _NextN is N - 1,
+    factorialHelper(_NextN, _X1),
+    X is N * _X1.
 
 

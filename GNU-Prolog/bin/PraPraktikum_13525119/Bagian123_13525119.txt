@@ -245,3 +245,23 @@ Query: ?- makeDiamond(5).
   1 2 1
     1
 yes
+
+
+Bagian <III>
+
+/ minMaxScaling
+Query: ?- minMaxScaling([4,3,1,5,12], Result).
+
+Result = [0.27272727272727271,0.18181818181818182,0.0,0.36363636363636365,1.0]
+
+yes
+
+/ pemusnahKarbit */
+Query: ?- pemusnahKarbit([3,0,10,1,5], Result).
+Result= [0,1]
+yes
+
+Query: ?- pemusnahKarbit([-2,100,1,1,4,7,0,2,1], Result).
+Result= [1,1,0,1]
+yes
+

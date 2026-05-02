@@ -581,3 +581,17 @@ scaleList([H|T], Min, Max, [ScaledH|ScaledT]):-
     _Range is Max - Min,
     ScaledH is (H - Min) /  _Range,
     scaleList(T, Min, Max, ScaledT).
+
+/* pemusnahKarbit */
+/* Base Case */
+pemusnahKarbit([], []):-!.
+
+/* Recursive */
+pemusnahKarbit([H|T], [H|Result]):-
+    (H =:= 0 ; H =:= 1),        
+    pemusnahKarbit(T, Result).
+
+pemusnahKarbit([H|T], Result):-
+    H =\= 0,                     
+    H =\= 1,                    
+    pemusnahKarbit(T, Result).

@@ -515,7 +515,7 @@ writeSpace(0):-!.
 /* Recursive Helper */
 writeSpace(Space):-
     Space > 0,
-    write(' '),
+    write('  '),
     _Space1 is Space - 1,
     writeSpace(_Space1).
 
@@ -544,4 +544,4 @@ writeDescend(StartDescend):-
     StartDescend > 0,
     write(StartDescend), write(' '),
     _NextDescend is StartDescend - 1,
-    writeDescend(_StartDescend).
+    writeDescend(_NextDescend).

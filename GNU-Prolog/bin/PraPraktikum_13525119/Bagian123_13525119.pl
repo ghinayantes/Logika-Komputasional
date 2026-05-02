@@ -352,4 +352,44 @@ factorialHelper(N, X):-
     factorialHelper(_NextN, _X1),
     X is N * _X1.
 
+/* Deklarasi Fakta */
+/* Base Case */
+vaultTransform(_Code, 0, _Code):-!.
+/* Recursive 5 */
+vaultTransform(Code, K, FinalCode):-
+    Code >= 0,
+    K > 0,
+    _NewK is K - 1,
+    reverseCode(Code, _RevCode),
+    digitsSum(Code, _Digit),
+    _NextCode is _RevCode + _Digit,
+    vaultTransform(_NextCode, _NewK, FinalCode).
+
+/* Recursive Helper */
+reverseCode(Code, RevCode):-
+    reverseCodeHelper(Code, 0, RevCode).
+
+/* Deklarasi Fakta */
+/* Base Case Helper */
+reverseCodeHelper(0, RevCode, RevCode):-!.
+/* Recursive Helper */
+reverseCodeHelper(Code, N, RevCode):-
+    Code > 0,
+    _Digit is Code mod 10,
+    _NewN is (N * 10) + _Digit,
+    _NextCode is Code // 10,
+    reverseCodeHelper(_NextCode, _NewN, RevCode).
+
+/* Deklarasi Fakta */
+/* Base Case Helper */
+digitsSum(0, 0):-!.
+/* Recursive Helper */
+digitsSum(Code, Sum):-
+    Code > 0,
+    _Last is Code mod 10,
+    _Rest is Code // 10,
+    digitsSum(_Rest, _SubSum),
+    Sum is _Last + _SubSum.
+
+
 

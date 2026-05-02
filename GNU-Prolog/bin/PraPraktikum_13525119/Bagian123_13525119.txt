@@ -128,3 +128,120 @@ X = zoro ? ;
 
 (63 ms) no
 
+
+Bagian <II>
+
+/ Recursive 1
+Query: ?- sumToN(5, X).
+X = 15
+yes
+
+Query: ?- sumToN(0, X).
+X = 0
+yes
+
+/ Recursive 2
+Query: ?- countDigits(7, X).
+X = 1
+yes
+
+Query: ?- countDigits(5071, X).
+X = 4
+yes
+
+/ Recursive 3
+Query: ?- palSteps(56, X).
+X = 1
+yes
+
+Query: ?- palSteps(19, X).
+X = 2
+yes
+
+Query: ?- palSteps(87, X).
+X = 4
+yes
+
+/ Recursive 4
+Query: ?- digitPowerSum(321, X).
+X = 32
+yes
+
+// HINT: use digitPowerSumSavior
+Query: ?- digitPowerSum(204, X).
+X = 12
+yes
+
+Query: ?- digitPowerSum(0, X).
+X = 0
+yes
+
+/ Recursive 5
+Query: ?- safeBinary(1, X).
+X = 2
+yes
+
+Query: ?- safeBinary(4, X).
+X = 8
+yes
+
+Query: ?- safeBinary(5, X).
+X = 13
+yes
+
+/ Recursive 6
+Query: ?- altFactorial(4, X).
+X = -19
+yes
+
+Query: ?- altFactorial(5, X).
+X = 101
+yes
+
+/ Recursive 7
+Query: ?- vaultTransform(12, 2, FinalCode).
+FinalCode = 48
+yes
+
+Query: ?- vaultTransform(105, 3, FinalCode).
+FinalCode = 732
+yes
+
+Query: ?- vaultTransform(7, 0, FinalCode).
+FinalCode = 7
+yes
+
+/ Recursive 8
+Query: ?- palPrimeCount(1, 30, X).
+X = 5
+yes
+
+Query: ?- palPrimeCount(100, 200, X).
+X = 5
+yes
+
+/ Recursive 9
+Query: ?- towerJourney(5, 10, FinalEnergy).
+FinalEnergy = 16
+yes
+
+Query: ?- towerJourney(10, 20, FinalEnergy).
+FinalEnergy = 32
+yes
+
+Query: ?- towerJourney(12, 1, FinalEnergy).
+FinalEnergy = 0
+yes
+
+/ Recursive 10
+Query: ?- makeDiamond(1).
+1
+yes
+
+Query: ?- makeDiamond(5).
+    1
+  1 2 1
+1 2 3 2 1
+  1 2 1
+    1
+yes

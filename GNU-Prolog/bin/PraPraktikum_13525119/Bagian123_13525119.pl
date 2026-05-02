@@ -392,4 +392,47 @@ digitsSum(Code, Sum):-
     Sum is _Last + _SubSum.
 
 
+/* Deklarasi Fakta */
+/* Base Case */
+palPrimeCount(B, B, X):-
+    (isAPalindrom(B), isAPrime(B) -> X is 1 ; X is 0), !.
+/* Recursive 6 */
+palPrimeCount(A, B, X):-
+    A < B,
+    _NextA is A + 1,
+    palPrimeCount(_NextA, B, _SubX),
+    (isAPalindrom(A), isAPrime(A) -> X is 1 + _SubX ; X is _SubX).
+
+/* Recursive Helper */
+isAPalindrom(A):-
+    reverseA(A, A).
+
+/* Recursive Helper */
+reverseA(A, RevA):-
+    reverseAHelper(A, 0, RevA).
+
+/* Deklarasi Fakta */
+/* Base Case Helper */
+reverseAHelper(0, RevA, RevA):-!.
+/* Recursive Helper */
+reverseAHelper(A, X, RevA):-
+    A > 0,
+    _Digit is A mod 10,
+    _NewX is (X * 10) + _Digit,
+    _NextA is A // 10,
+    reverseAHelper(_NextA, _NewX, RevA).
+
+/* Deklarasi Fakta */
+/* Base Case Helper */
+isAPrime(2):-!.
+/* Recursive Helper */
+isAPrime(A):-
+    A > 2,
+    A mod 2 =\= 0,
+    \+ factorA(A, 3).
+
+/* Recursive Helper */
+factorA(A, Factor):-
+    Factor * Factor =< A,
+    (A mod Factor =:= 0 -> true ; _NextFactor is Factor + 2, factorA(A, _NextFactor)).
 

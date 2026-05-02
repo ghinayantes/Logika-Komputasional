@@ -293,7 +293,7 @@ power(N, Exp, Result):-
     power(N, _NextExp, _Result1),
     Result is N * _Result1.
     
-/* Recursive 3 */
+/* Recursive 4 */
 digitPowerSum(N, X):-
     solve(N, 1, X).
 
@@ -310,7 +310,7 @@ solve(N, Exp, X):-
     solve(_SisaN, _NextExp, _Result1),
     X is _Val + _Result1.
 
-/* Recursive 3 */
+/* Recursive 5 */
 safeBinary(N, X):-
     N >= 1,
     isValid(N, 0, X).
@@ -335,7 +335,7 @@ isValid(N, 1, X):-
 /* Deklarasi Fakta */
 /* Base Case */
 altFactorial(1, 1):-!.
-/* Recursive 4 */
+/* Recursive 6 */
 altFactorial(N, X):-
     N > 1,
     _N1 is N - 1,
@@ -355,7 +355,7 @@ factorialHelper(N, X):-
 /* Deklarasi Fakta */
 /* Base Case */
 vaultTransform(_Code, 0, _Code):-!.
-/* Recursive 5 */
+/* Recursive 7 */
 vaultTransform(Code, K, FinalCode):-
     Code >= 0,
     K > 0,
@@ -396,7 +396,7 @@ digitsSum(Code, Sum):-
 /* Base Case */
 palPrimeCount(B, B, X):-
     (isAPalindrom(B), isAPrime(B) -> X is 1 ; X is 0), !.
-/* Recursive 6 */
+/* Recursive 8 */
 palPrimeCount(A, B, X):-
     A < B,
     _NextA is A + 1,
@@ -437,7 +437,7 @@ factorA(A, Factor):-
     (A mod Factor =:= 0 -> true ; _NextFactor is Factor + 2, factorA(A, _NextFactor)).
 
 
-/* Recursive 7 */
+/* Recursive 9 */
 towerJourney(N, Energy, FinalEnergy):-
     processRooms(1, N, Energy, FinalEnergy).
 
@@ -490,3 +490,58 @@ isNPerfectSquare(N):-
 checkSquare(N, I):-
     Square is I * I,
     (Square =:= N -> true ; Square < N -> NextI is I + 1, checkSquare(N, NextI) ; false).
+
+/* Recursive 10 */
+makeDiamond(N):-
+    N >= 0,
+    N mod 2 =\= 0,
+    _Middle is (N + 1) // 2,
+    writeDiamondsRows(1, N, _Middle).
+
+/* Recursive Helper */
+writeDiamondsRows(I, N, Mid):-
+    I =< N,
+    _Space is abs(Mid - I),
+    writeSpace(_Space),
+    _MaxNum is Mid - abs(Mid - I),
+    writeNumbers(1, _MaxNum),
+    nl,
+    _NextI is I + 1,
+    writeDiamondsRows(_NextI, N, Mid).
+
+/* Deklarasi Fakta */
+/* Base Case Helper */
+writeSpace(0):-!.
+/* Recursive Helper */
+writeSpace(Space):-
+    Space > 0,
+    write(' '),
+    _Space1 is Space - 1,
+    writeSpace(_Space1).
+
+/* Recursive Helper */
+writeNumbers(_Cur, _Max):-
+    writeAscend(1, _Max),
+    _StartDescend is _Max - 1,
+    writeDescend(_StartDescend).
+
+/* Deklarasi Fakta */
+/* Base Case Helper */
+writeAscend(Cur, Max):-
+    Cur > Max, !.
+/* Recursive Helper */
+writeAscend(Cur, Max):-
+    Cur =< Max,
+    write(Cur), write(' '),
+    _Next is Cur + 1,
+    writeAscend(_Next, Max).
+
+/* Deklarasi Fakta */
+/* Base Case Helper */
+writeDescend(0):-!.
+/* Recursive Helper */
+writeDescend(StartDescend):-
+    StartDescend > 0,
+    write(StartDescend), write(' '),
+    _NextDescend is StartDescend - 1,
+    writeDescend(_StartDescend).

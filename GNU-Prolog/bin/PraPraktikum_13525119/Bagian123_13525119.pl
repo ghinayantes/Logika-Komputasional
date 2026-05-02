@@ -123,7 +123,7 @@ saudaratiri(X, Y):-
     anak(Y, _W),
     menikah(_U, _V),
     menikah(_V, _W),
-    X \== Y, U \== W.
+    X \== Y, _U \== _W.
 
 /* c. sepupu(X, Y) */
 sepupu(X, Y):-
@@ -137,7 +137,7 @@ kakak(X, Y):-
     saudara(X,Y),
     usia(X, _V),
     usia(Y, _W),
-    V > W, X \== Y.
+    _V > _W, X \== Y.
 
 /* e. keponakan(X, Y) */
 keponakan(X, Y):- 
@@ -436,3 +436,57 @@ factorA(A, Factor):-
     Factor * Factor =< A,
     (A mod Factor =:= 0 -> true ; _NextFactor is Factor + 2, factorA(A, _NextFactor)).
 
+
+/* Recursive 7 */
+towerJourney(N, Energy, FinalEnergy):-
+    processRooms(1, N, Energy, FinalEnergy).
+
+/* Deklarasi Fakta */
+/* Base Case Helper */
+processRooms(Current, N, Energy, Energy) :- 
+    Current > N, !.
+/* Deklarasi Fakta */
+/* Base Case Helper */
+processRooms(_, _, Energy, 0) :- 
+    Energy =< 0,!.
+
+/* Recursive Helper */
+processRooms(T, N, Energy, FinalEnergy) :- 
+    T =< N,
+    rules(T, Energy, NextEnergy),
+    (NextEnergy =< 0 -> FinalEnergy = 0 ; NextT is T + 1, processRooms(NextT, N, NextEnergy, FinalEnergy)).
+
+/* Recursive Helper */
+rules(T, Energy, FinalEnergy):-
+    (T mod 2 =:= 0 -> Energy1 is Energy + 3 ; Energy1 is Energy),
+    (T mod 5 =:= 0 -> Energy2 is Energy1 - 4 ; Energy2 is Energy1),
+    (isNPrime(T) -> Energy3 is Energy2 + 2 ; Energy3 is Energy2),
+    (isNPerfectSquare(T) -> FinalEnergy is Energy3 - 1 ; FinalEnergy is Energy3).
+
+/* Deklarasi Fakta */
+/* Base Case Helper */
+isNPrime(2):-!.
+/* Recursive Helper */
+isNPrime(N):-
+    N > 2,
+    N mod 2 =\= 0,
+    \+ factorN(N, 3).
+
+/* Recursive Helper */
+factorN(N, Factor):-
+    Factor * Factor =< N,
+    (N mod Factor =:= 0 -> true ; NextFactor is Factor + 2, factorN(N, NextFactor)).
+
+/* Deklarasi Fakta */
+/* Base Case Helper */
+isNPerfectSquare(0):-!.
+isNPerfectSquare(1):-!.
+/* Recursive Helper */
+isNPerfectSquare(N):-
+    N > 1,
+    checkSquare(N, 1).
+
+/* Recursive Helper */
+checkSquare(N, I):-
+    Square is I * I,
+    (Square =:= N -> true ; Square < N -> NextI is I + 1, checkSquare(N, NextI) ; false).

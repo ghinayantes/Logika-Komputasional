@@ -545,3 +545,39 @@ writeDescend(StartDescend):-
     write(StartDescend), write(' '),
     _NextDescend is StartDescend - 1,
     writeDescend(_NextDescend).
+
+
+/* Bagian <III> */
+
+/* minMaxScalling */
+/* Recursive 1 */
+minMaxScaling(Input, Result):-
+    listMin(Input, Min),       
+    listMax(Input, Max),       
+    scaleList(Input, Min, Max, Result).
+
+/* Deklarasi Fakta */
+/* Base Case */
+listMin([Min], Min):-!.
+
+/* Recursive */
+listMin([H|T], Min):-
+    listMin(T, _MinT),
+    (H < _MinT -> Min = H ; Min = _MinT).
+
+/* Deklarasi Fakta */
+/* Base Case */
+listMax([Max], Max):-!.
+/* Recursive */
+listMax([H|T], Max):-
+    listMax(T, _MaxT),
+    (H > _MaxT -> Max = H ; Max = _MaxT).
+
+/* Deklarasi Fakta */
+/* Base Case */
+scaleList([], _Min, _Max, []):-!.
+/* Recursive */
+scaleList([H|T], Min, Max, [ScaledH|ScaledT]):-
+    _Range is Max - Min,
+    ScaledH is (H - Min) /  _Range,
+    scaleList(T, Min, Max, ScaledT).

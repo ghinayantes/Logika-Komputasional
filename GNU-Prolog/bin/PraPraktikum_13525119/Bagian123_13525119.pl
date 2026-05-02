@@ -586,7 +586,7 @@ scaleList([H|T], Min, Max, [ScaledH|ScaledT]):-
 /* Base Case */
 pemusnahKarbit([], []):-!.
 
-/* Recursive */
+/* Recursive 2 */
 pemusnahKarbit([H|T], [H|Result]):-
     (H =:= 0 ; H =:= 1),        
     pemusnahKarbit(T, Result).
@@ -595,3 +595,37 @@ pemusnahKarbit([H|T], Result):-
     H =\= 0,                     
     H =\= 1,                    
     pemusnahKarbit(T, Result).
+
+/* FansBarcelona */
+/* Recursive 3 */
+fansBarcelona(Input, FanCount, Result):-
+    findMode(Input, Mode),         
+    (Mode = 'real madrid' -> appendN(Input, 'hater', FanCount, Result) ; appendN(Input, Mode, FanCount, Result)).
+
+/* Base Case Helper */
+countElmt(_X, [], 0):-!.
+/* Recursive Helper */
+countElmt(X, [X|T], Count):-       
+    countElmt(X, T, Rest),
+    Count is Rest + 1.
+countElmt(X, [H|T], Count):-       
+    X \= H,
+    countElmt(X, T, Count).
+
+/* Base Case Helper */
+findMode([H], H):-!.                   
+/* Recursive Helper */
+findMode([H|T], Mode):-
+    findMode(T, _ModeTail),
+    countElmt(H, [H|T], _CountH),
+    countElmt(_ModeTail, [H|T], _CountTail),
+    (_CountH >= _CountTail -> Mode = H ; Mode = _ModeTail).
+
+/* Base Case Helper */
+appendN(List, _, 0, List):-!. 
+/* Recursive Helper */        
+appendN(List, Elem, N, Result):-
+    N > 0,
+    _N1 is N - 1,
+    append(List, [Elem], _TempList),
+    appendN(_TempList, Elem, _N1, Result).

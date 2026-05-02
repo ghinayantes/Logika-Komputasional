@@ -265,3 +265,16 @@ Query: ?- pemusnahKarbit([-2,100,1,1,4,7,0,2,1], Result).
 Result= [1,1,0,1]
 yes
 
+/ fansBarcelona
+
+Query: ?- fansBarcelona(['psg', 'bayern', 'psg', 'bayern', 'real madrid', 'psg'], 2, Result).
+
+Result = [psg,bayern,psg,bayern,'real madrid',psg,psg,psg] ? 
+
+yes
+
+Query: ?- fansBarcelona(['real madrid', 'inter', 'man city', 'real madrid', 'liverpool'],3, Result).
+
+Result = ['real madrid',inter,'man city','real madrid',liverpool,hater,hater,hater] ? 
+
+yes

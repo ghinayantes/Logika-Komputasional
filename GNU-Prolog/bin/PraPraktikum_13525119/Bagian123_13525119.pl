@@ -220,4 +220,99 @@ yatimpiatu(X):-
     X \== _Y.
 
 
+/* Bagian <II> */
+/* Deklarasi Fakta */
+/* Base Case 1*/
+sumToN(0, 0).
+
+/* Deklarasi Rules */
+/* Recursive 1*/
+sumToN(N, X) :-
+    N > 0,              
+    _N1 is N - 1,       
+    sumToN(_N1, _X1),     
+    X is N + _X1.
+
+
+/* penanganan khusus jika input N = 0 */
+/* Base Case 2 */
+countDigits(0, 1):-!.  
+/* Recursive 2*/
+countDigits(N, X):-
+    N > 0,
+    helperCount(N, X).
+
+/* Deklarasi Fakta */
+/* Base Case Helper*/
+helperCount(0, 0).
+/* Recursive Helper*/
+helperCount(N, X):-
+    N > 0,
+    _N1 is N // 10,
+    helperCount(_N1, _X1),
+    X is 1 + _X1.
+
+/* Recursive Helper */
+reverseNum(N, Rev):-
+    reverseHelper(N, 0, Rev).
+
+/* Deklarasi Fakta */
+/* Base Case Helper */
+reverseHelper(0, X, X).
+/* Recursive Helper */
+reverseHelper(N, X, Rev):-
+    N > 0,
+    _Digit is N mod 10,
+    _NewX is (X * 10) + _Digit,
+    _NextN is N // 10,
+    reverseHelper(_NextN, _NewX, Rev).
+
+/* Rules Helper */
+isPalindrom(N):-
+    reverseNum(N, N).
+
+/* Deklarasi Fakta */
+/* Base Case 3*/
+palSteps(N, 0):-    
+    isPalindrom(N), !.
+
+/* Recursive 3 */
+palSteps(N, X):-
+    reverseNum(N, _Rev),
+    _NewN is N + _Rev,
+    palSteps(_NewN, _X1),
+    X is _X1 + 1.
+
+/* Deklarasi Fakta */
+/* Base Case Helper */
+power(_N, 0, 1).
+/* Recursive Helper */
+power(N, Exp, Result):-
+    Exp > 0,
+    _NextExp is Exp - 1,
+    power(N, _NextExp, _Result1),
+    Result is N * _Result1.
+    
+/* Recursive 3 */
+digitPowerSum(N, X):-
+    solve(N, 1, X).
+
+/* Deklarasi Fakta */
+/* Base Case Helper */
+solve(0, _Exp, 0).
+/* Recursive Helper */
+solve(N, Exp, X):-
+    N > 0,
+    _Digit is N mod 10,
+    _SisaN is N // 10,
+    _NextExp is Exp + 1,
+    power(_Digit, Exp, _Val),
+    solve(_SisaN, _NextExp, _Result1),
+    X is _Val + _Result1.
+
+
+
+
+
+
 

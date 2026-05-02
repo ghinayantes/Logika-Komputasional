@@ -66,3 +66,65 @@ X = fathur ? ;
 
 (62 ms) no
 
+Query: pria(X), anak(_AnakPerempuanX, X),wanita(_AnakPerempuanX),saudara(_SaudaraLaki2X, X),pria(_SaudaraLaki2X),\+saudaratiri(_SaudaraLaki2X,X). (g. Pria yang memiliki anak perempuan dan saudara kandung laki-laki)
+
+no
+
+Query: ?- menikah(X, _PasanganX),usia(X,_UsiaX), usia(_PasanganX, _UsiaPasanganX), (_UsiaX - _UsiaPasanganX > 10;_UsiaPasanganX - _UsiaX > 10).(h. Orang yang memiliki pasangan dengan selisih usia lebih dari 10 tahun darinya.)
+
+X = faqih ? ;
+
+X = karina ? ;
+
+X = owen ? ;
+
+X = tsunade ? ;
+
+(31 ms) no
+
+Query: anaksulung(X),\+saudara(X,_SaudaraX). (i. Anak sulung dari seseorang yang memiliki lebih dari satu anak)
+
+X = karma ? ;
+
+X = karma ? ;
+
+X = karma ? ;
+
+X = karma ? ;
+
+X = william ? ;
+
+X = owen ? ;
+
+X = owen ? ;
+
+X = owen ? ;
+
+X = owen ? ;
+
+X = nezuko ? ;
+
+X = nezuko ? ;
+
+X = nezuko ? ;
+
+X = nezuko ? ;
+
+(125 ms) no
+
+Query: ?- usia(X,_UsiaX),_UsiaX > 50, menikah(X,_PasanganX),saudara(_PasanganX,_SaudaraPasanganX). (j. Orang diatas 50 tahun yang statusnya menikah dengan orang yang memiliki saudara)
+
+X = todoroki ? ;
+
+X = todoroki ? ;
+
+X = levi ? ;
+
+X = levi ? ;
+
+X = zoro ? ;
+
+X = zoro ? ;
+
+(63 ms) no
+

@@ -599,8 +599,10 @@ pemusnahKarbit([H|T], Result):-
 /* FansBarcelona */
 /* Recursive 3 */
 fansBarcelona(Input, FanCount, Result):-
-    findMode(Input, Mode),         
-    (Mode = 'real madrid' -> appendN(Input, 'hater', FanCount, Result) ; appendN(Input, Mode, FanCount, Result)).
+    findMode(Input, Mode),     
+    _RealMadrid = "real madrid",
+    _Hater = "hater",    
+    (Mode == _RealMadrid -> appendN(Input, _Hater, FanCount, Result) ; appendN(Input, Mode, FanCount, Result)).
 
 /* Base Case Helper */
 countElmt(_X, [], 0):-!.

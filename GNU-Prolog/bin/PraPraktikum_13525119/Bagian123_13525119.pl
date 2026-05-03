@@ -501,14 +501,22 @@ makeDiamond(N):-
 /* Recursive Helper */
 writeDiamondsRows(I, N, Mid):-
     I =< N,
-    _Space is abs(Mid - I),
+    _Diff is Mid - I,
+    absolute(_Diff, _Space),
     writeSpace(_Space),
-    _MaxNum is Mid - abs(Mid - I),
-    writeNumbers(1, _MaxNum),
-    nl,
+    _MaxNum is Mid - _Space,
+    writeNumbers(1, _MaxNum), nl,
     _NextI is I + 1,
     writeDiamondsRows(_NextI, N, Mid).
 
+/* Deklarasi Fakta */
+/* Rules Helper */
+absolute(X, Res):-
+    X < 0,
+    Res is -X, !.
+/* Deklarasi Fakta */
+absolute(X, X).
+    
 /* Deklarasi Fakta */
 /* Base Case Helper */
 writeSpace(0):-!.

@@ -1,3 +1,4 @@
+/* Bagian <IV> */
 :-dynamic(game_started/0).
 :-dynamic(hand/1).
 

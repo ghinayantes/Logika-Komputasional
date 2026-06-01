@@ -8,8 +8,7 @@
 /* start */
 /* Deklarasi Rules */
 start:- 
-    (game_started -> write('Permainan sudah dimulai. Gunakan "exit" untuk keluar dan memulai ulang.'), nl
-    ; 
+    (game_started -> write('Permainan sudah dimulai. Gunakan "exit" untuk keluar dan memulai ulang.'), nl ; 
     readCards(Cards), 
     assertz(game_started), 
     assertz(hand(Cards)),
@@ -38,8 +37,7 @@ play_card:-
 /* display_status */
 /* Deklarasi Rules */
 display_status:-
-    (\+ game_started -> fail
-    ;
+    (\+ game_started -> fail ;
     hand(H),
     listLength(H, Len),
     format('Banyak Kartu di Tangan: ~w~n', [Len]),
@@ -48,10 +46,11 @@ display_status:-
 /* exit */
 /* Deklarasi Rules */
 exit:-
-    (\+ game_started -> write('Permainan belum dimulai. Gunakan "start" untuk memulai.'), nl
-    ;
-    hand(FinalHand), writeResult(FinalHand),
-    retract(game_started), retract(hand(_)),
+    (\+ game_started -> write('Permainan belum dimulai. Gunakan "start" untuk memulai.'), nl ;
+    hand(FinalHand), 
+    writeResult(FinalHand),
+    retract(game_started), 
+    retract(hand(_)),
     write('Hasil permainan telah disimpan ke hasil_13525119.txt.'), nl,
     write('Sampai jumpa di meja kartu berikutnya.'), nl).
 

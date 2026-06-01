@@ -492,67 +492,7 @@ checkSquare(N, I):-
     (Square =:= N -> true ; Square < N -> NextI is I + 1, checkSquare(N, NextI) ; false).
 
 /* Recursive 10 */
-makeDiamond(N):-
-    N >= 0,
-    N mod 2 =\= 0,
-    _Middle is (N + 1) // 2,
-    writeDiamondsRows(1, N, _Middle).
-
-/* Recursive Helper */
-writeDiamondsRows(I, N, Mid):-
-    I =< N,
-    _Diff is Mid - I,
-    absolute(_Diff, _Space),
-    writeSpace(_Space),
-    _MaxNum is Mid - _Space,
-    writeNumbers(1, _MaxNum), nl,
-    _NextI is I + 1,
-    writeDiamondsRows(_NextI, N, Mid).
-
-/* Deklarasi Fakta */
-/* Rules Helper */
-absolute(X, Res):-
-    X < 0,
-    Res is -X, !.
-/* Deklarasi Fakta */
-absolute(X, X).
-    
-/* Deklarasi Fakta */
-/* Base Case Helper */
-writeSpace(0):-!.
-/* Recursive Helper */
-writeSpace(Space):-
-    Space > 0,
-    write('  '),
-    _Space1 is Space - 1,
-    writeSpace(_Space1).
-
-/* Recursive Helper */
-writeNumbers(_Cur, _Max):-
-    writeAscend(1, _Max),
-    _StartDescend is _Max - 1,
-    writeDescend(_StartDescend).
-
-/* Deklarasi Fakta */
-/* Base Case Helper */
-writeAscend(Cur, Max):-
-    Cur > Max, !.
-/* Recursive Helper */
-writeAscend(Cur, Max):-
-    Cur =< Max,
-    write(Cur), write(' '),
-    _Next is Cur + 1,
-    writeAscend(_Next, Max).
-
-/* Deklarasi Fakta */
-/* Base Case Helper */
-writeDescend(0):-!.
-/* Recursive Helper */
-writeDescend(StartDescend):-
-    StartDescend > 0,
-    write(StartDescend), write(' '),
-    _NextDescend is StartDescend - 1,
-    writeDescend(_NextDescend).
+/* belum */
 
 
 /* Bagian <III> */
@@ -605,37 +545,4 @@ pemusnahKarbit([H|T], Result):-
     pemusnahKarbit(T, Result).
 
 /* FansBarcelona */
-/* Recursive 3 */
-fansBarcelona(Input, FanCount, Result):-
-    findMode(Input, Mode),     
-    _RealMadrid = "real madrid",
-    _Hater = "hater",    
-    (Mode == _RealMadrid -> appendN(Input, _Hater, FanCount, Result) ; appendN(Input, Mode, FanCount, Result)).
-
-/* Base Case Helper */
-countElmt(_X, [], 0):-!.
-/* Recursive Helper */
-countElmt(X, [X|T], Count):-       
-    countElmt(X, T, Rest),
-    Count is Rest + 1.
-countElmt(X, [H|T], Count):-       
-    X \= H,
-    countElmt(X, T, Count).
-
-/* Base Case Helper */
-findMode([H], H):-!.                   
-/* Recursive Helper */
-findMode([H|T], Mode):-
-    findMode(T, _ModeTail),
-    countElmt(H, [H|T], _CountH),
-    countElmt(_ModeTail, [H|T], _CountTail),
-    (_CountH >= _CountTail -> Mode = H ; Mode = _ModeTail).
-
-/* Base Case Helper */
-appendN(List, _, 0, List):-!. 
-/* Recursive Helper */        
-appendN(List, Elem, N, Result):-
-    N > 0,
-    _N1 is N - 1,
-    append(List, [Elem], _TempList),
-    appendN(_TempList, Elem, _N1, Result).
+/* belum */

@@ -1,0 +1,13 @@
+user(asri, bandung, 3600). 
+user(buddy, jakarta, 3200). 
+user(citra, bandung, 5000). 
+user(dina, bogor, 100). 
+user(elo, bandung, 120). 
+user(fajar, jakarta, 2300). 
+user(gia, bogor, 700). 
+friend(asri, citra). 
+friend(asri, elo). 
+friend(citra, dina). 
+friend(buddy, fajar). 
+friend(gia, dina). 
+friend(fajar, asri).
